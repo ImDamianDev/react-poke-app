@@ -9,6 +9,7 @@ Open https://imdamiandev-react-poke-app.netlify.app/ to view it in your browser.
 ### General Info
 ***
 App creada con la tecnologia react.
+
 Utiliza fetch para consumir datos de la API de https://pokeapi.co/. en su version 2.
 
 Se disponibiliza una vista principal con cards de los pokemones con la informacion base de estos(id, nombre e imagen).
