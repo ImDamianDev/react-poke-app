@@ -1,0 +1,90 @@
+.poke-page-container {
+    height: 50vh;
+}
+
+.poke-page-container a {
+    position: absolute;
+    top: 0;
+    margin-top: 24px;
+    margin-left: 24px;
+}
+
+.bi {
+    font-size: 2em;
+    color: dimgray;
+    transition: linear 0.2s;
+}
+
+.bi:hover {
+    font-size: 2.25em;
+}
+
+.poke-page-container img {
+    display: block;
+    margin: 24px auto 0px auto;
+    height: 200px;
+}
+
+.poke-page-container .id {
+    position: relative;
+    top: -10px;
+    font-size: 1.25rem;
+    color: dimgray;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.poke-page-container .name {
+    position: relative;
+    top: -16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.poke-type-container {
+    display: flex;
+    justify-content: center;
+}
+
+.poke-type {
+    margin: 0 5px;
+    border-radius: 16px;
+    color: aliceblue;
+    padding: 5px 16px;
+}
+
+.poke-type::first-letter {
+    text-transform: uppercase;
+}
+
+.poke-page-container h1::first-letter {
+    text-transform: uppercase;
+
+}
+
+.poke-stats {
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 16px auto;
+    padding: 32px 24px;
+    height: 50vh;
+    border-radius: 60px 60px 0 0;
+}
+
+h5 {
+    text-align: center;
+    color: dimgray;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    color: aliceblue;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+}
