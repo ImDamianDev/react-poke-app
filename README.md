@@ -10,7 +10,7 @@ Open https://imdamiandev-react-poke-app.netlify.app/ to view it in your browser.
 ***
 app react que consume datos de https://pokeapi.co/.
 ### Screenshot
-![Image text](https://www.united-internet.de/fileadmin/user_upload/Brands/Downloads/Logo_IONOS_by.jpg)
+![Image text](./public/img/Screenshot_Home.jpg)
 ## Technologies
 ***
 A list of technologies used within the project:
