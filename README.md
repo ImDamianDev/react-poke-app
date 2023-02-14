@@ -19,6 +19,7 @@ Al seleccionar cualquiera de ellos se disponibiliza una vista detalle del pokemo
 El despliegue se realizo con netlify y puede abrir https://imdamiandev-react-poke-app.netlify.app/ para verlo en su navegador.
 ### Screenshot
 ![Home Screen](./public/img/Screenshot_Home.jpg)
+
 ![Detail Screen](./public/img/Screenshot_Pokemon_Detail.jpg)
 ## Technologies
 ***
