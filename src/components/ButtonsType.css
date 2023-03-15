@@ -1,0 +1,15 @@
+.buttons-type {
+    display: flex;
+}
+
+.buttons-type-list {
+    display: flex;
+    overflow: auto;
+}
+
+.button-type {
+    padding: 0.5em;
+    margin-inline: 0.5em;
+    border-radius: 0.5em;
+    height: 100%;
+}

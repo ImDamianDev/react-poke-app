@@ -20,3 +20,14 @@ export const getPokemonByName = async (name) => {
         console.error(error);
     }
 };
+
+export const getType = async () => {
+    try {
+        const response = await fetch(`${API_URL}/type`);
+        const data = await response.json();
+        //console.log(data.results)
+        return data.results;
+    } catch (error) {
+        console.error(error);
+    }
+};
