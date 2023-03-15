@@ -27,7 +27,7 @@ const ButtonsType = () => {
     
 
   return (
-    <div className='container buttons-type px-3'>
+    <div className='buttons-type'>
       <button onClick={() => filtrar("borrar")} className='button-type'>
         Todos
       </button>
