@@ -2,29 +2,36 @@
     padding-top: 2em;
 }
 
+.card {
+    border: none;
+}
+
 .poke-page .card-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border: none;
+    border-radius: 1em;
+    color: white;
 }
 
 .card-header .name{
     text-transform: capitalize;
 }
 
-.poke-page a {
-    position: absolute;
-    top: 0;
-    margin-top: 4em;
-}
-
 .bi {
     font-size: 2em;
-    color: dimgray;
+    color: white;
+    position: absolute;
+    top: 0;
+    padding-top: 0.1em;
     transition: linear 0.2s;
 }
 
 .bi:hover {
-    font-size: 2.25em;
+    
+    font-size: 2.2em;
 }
 
 .poke-page img {

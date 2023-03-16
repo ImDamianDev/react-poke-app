@@ -51,12 +51,13 @@ const Pokemon = () => {
     return (
         <div className='poke-page container'>
             <div className='card'>
-                <div className='card-header'>
+                <div className={'card-header ' + pokeTypes[0]}>
+                    <a href="/"><i className="bi bi-arrow-left"></i></a>
                     <h1 className='name'>{pokeName}</h1>
                     <h1 className='id'># {pokeInfo.id}</h1>
                 </div>
                 <div className='card-body'>
-                    <a href="/"><i className="bi bi-arrow-left"></i></a>
+
                     <div className='row'>
                         <div className='col-12 col-md-6'>
                             <img src={pokeImg} alt={"PokeImg" + pokeInfo.id} />
@@ -125,7 +126,7 @@ const Pokemon = () => {
                                                     </h6>
                                                 </div>
                                                 <div className="col-6 progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                    <div className="progress-bar" style={{ width: stat.value }}></div>
+                                                    <div className={"progress-bar " + pokeTypes[0]}  style={{ width: stat.value}}></div>
                                                 </div>
                                             </div>
                                         </div>
