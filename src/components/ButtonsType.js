@@ -4,13 +4,27 @@ import { useState, useEffect } from 'react';
 import * as API from "../services/pokemones";
 import './ButtonsType.css'
 
-const ButtonsType = () => {
+const ButtonsType = ({ pokemones }) => {
 
   const [types, setTypes] = useState([]);
+  const [filteredPokemon, setFilteredPokemon] = useState(pokemones)
 
   const filtrar = (tipo) => {
     alert(tipo)
+    if (tipo === "borrar") {
+      setFilteredPokemon(pokemones)
+    } else {
+      let nuevoPokemon = pokemones.filter(pokemon => {
+        pokemon.types.some(t => t.type.name === tipo)
+      }).map(pokemones => {
+        let nuevoPokemon = { ...pokemones }
+        return nuevoPokemon
+      })
+      setFilteredPokemon(nuevoPokemon)
+    }
   }
+
+  console.log(filteredPokemon)
 
   useEffect(() => {
     let pokeType = []
@@ -24,7 +38,7 @@ const ButtonsType = () => {
       setTypes(pokeType)
     })
   }, []);
-    
+
 
   return (
     <div className='buttons-type'>
@@ -34,7 +48,7 @@ const ButtonsType = () => {
       <div className='buttons-type-list'>
         {types.map((type) => {
           return (
-            <button onClick={() => filtrar(type)} className={'button-type ' + type}>
+            <button key={type} onClick={() => filtrar(type)} className={'button-type ' + type}>
               {type}
             </button>
           )

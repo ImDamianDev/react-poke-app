@@ -10,3 +10,20 @@
 .filter-title {
     font-size: 1.25em;
 }
+
+.buttons-type {
+    display: flex;
+}
+
+.buttons-type-list {
+    display: flex;
+    overflow: auto;
+}
+
+.button-type {
+    padding: 0.5em 0.75em;
+    margin-right: 0.75em;
+    border-radius: 0.5em;
+    height: 100%;
+    text-transform: capitalize;
+}

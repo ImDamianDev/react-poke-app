@@ -1,34 +1,6 @@
-//hooks
-import { useState, useEffect } from 'react';
-//Api
-import * as API from "../services/pokemones";
 import './ContainerCards.css'
 
-const ContainerCards = () => {
-
-  const [pokemones, setPokemones] = useState([]);
-
-  useEffect(() => {
-    let pokeInfo = []
-    //solicitando la informacion de los pokemon
-    API.getAllPokemon().then((results) => {
-      //recorriendo los resultados
-      results.forEach((p) => {
-        //almacenando el una variable el nombre de cada poquemon encontrado
-        let pokemonName = p.name
-        //
-        pokeInfo.push(API.getPokemonByName(pokemonName))
-      })
-
-      Promise.all(pokeInfo).then((data) => {
-        let infoP = []
-        data.forEach((d) => {
-          infoP.push(d)
-        })
-        setPokemones(infoP)
-      })
-    })
-  }, []);
+const ContainerCards = ({ pokemones }) => {
 
   return (
     <div className="container text-center">
