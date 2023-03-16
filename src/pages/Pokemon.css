@@ -1,12 +1,20 @@
-.poke-page-container {
-    height: 50vh;
+.poke-page{
+    padding-top: 2em;
 }
 
-.poke-page-container a {
+.poke-page .card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header .name{
+    text-transform: capitalize;
+}
+
+.poke-page a {
     position: absolute;
     top: 0;
-    margin-top: 24px;
-    margin-left: 24px;
+    margin-top: 4em;
 }
 
 .bi {
@@ -19,27 +27,10 @@
     font-size: 2.25em;
 }
 
-.poke-page-container img {
+.poke-page img {
     display: block;
-    margin: 24px auto 0px auto;
+    margin: 1em auto 0px auto;
     height: 200px;
-}
-
-.poke-page-container .id {
-    position: relative;
-    top: -10px;
-    font-size: 1.25rem;
-    color: dimgray;
-    font-weight: bold;
-    text-align: center;
-}
-
-
-.poke-page-container .name {
-    position: relative;
-    top: -16px;
-    font-weight: bold;
-    text-align: center;
 }
 
 .poke-type-container {
@@ -48,7 +39,7 @@
 }
 
 .poke-type {
-    margin: 0 5px;
+    margin: 1em 0.5em;
     border-radius: 16px;
     color: aliceblue;
     padding: 5px 16px;
@@ -58,33 +49,39 @@
     text-transform: uppercase;
 }
 
-.poke-page-container h1::first-letter {
-    text-transform: uppercase;
-
+.card-body-info{
+    padding: 1em 0;
 }
 
-.poke-stats {
-    display: flex;
-    justify-content: space-around;
-    max-width: 800px;
-    margin: 16px auto;
-    padding: 32px 24px;
-    height: 50vh;
-    border-radius: 60px 60px 0 0;
-}
-
-h5 {
-    text-align: center;
-    color: dimgray;
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-p {
-    text-align: center;
+.about-poke{
+    border-radius: 1em;
+    padding: 1em;
     color: aliceblue;
-    margin-bottom: 10px;
-    font-weight: bold;
+}
 
+.about-poke hr{
+    border-top: 3px solid white;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.about-stats{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.about-stats div{
+    width: 100%;
+}
+
+.stats-poke{
+    margin-top: 2em;
+    padding: 1em;
+}
+
+.stat-item{
+    margin-bottom: 1em;
 }
