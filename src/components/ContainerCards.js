@@ -1,6 +1,33 @@
+import { useEffect } from 'react'
 import './ContainerCards.css'
+import { gsap } from 'gsap'
 
 const ContainerCards = ({ pokemones }) => {
+
+  
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    const pokeBox = document.querySelectorAll('.poke-box')
+    const pokeId = document.querySelectorAll('.poke-id')
+    const pokeName = document.querySelectorAll('.poke-name')
+    const pokeImg = document.querySelectorAll('.poke-img')
+
+    timeline.from(pokeBox, {
+      x: 768,
+      duration: 3,
+      stagger: 0.5
+    })
+    timeline.from(pokeId,{
+      opacity: 0,
+      duration: 2
+    }).from(pokeName,{
+      opacity: 0,
+      duration: 2
+    }).from(pokeImg,{
+      opacity: 0,
+      duration: 2
+    })
+  }, [])
 
   return (
     <div className="container text-center">
