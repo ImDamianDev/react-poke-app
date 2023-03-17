@@ -20,12 +20,17 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         stagger: 0.5
       })
 
+      gsap.to(pokeBox, {
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.5
+      })
+
       gsap.from(pokeId, {
         opacity: 0,
         y: 50,
         duration: 0.5,
         stagger: 0.5,
-        delay: 0.75
       })
 
       gsap.from(pokeName, {
