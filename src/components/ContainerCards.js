@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import './ContainerCards.css'
 import { gsap } from 'gsap'
 
-const ContainerCards = ({ pokemones }) => {
-
+const ContainerCards = ({ pokemones, isLoading }) => {
+  console.log(isLoading)
   useEffect(() => {
     const timeline = gsap.timeline();
     const pokeBox = document.querySelectorAll('.poke-box')
@@ -11,7 +11,8 @@ const ContainerCards = ({ pokemones }) => {
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
 
-    gsap.from(pokeBox, {
+    if (isLoading === false) {
+      gsap.from(pokeBox, {
         opacity: 0,
         x: 50,
         y: 25,
@@ -19,30 +20,31 @@ const ContainerCards = ({ pokemones }) => {
         stagger: 0.5
       })
 
-    gsap.from(pokeId, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-      stagger: 0.5,
-      delay: 0.75
-    })
+      gsap.from(pokeId, {
+        opacity: 0,
+        y: 50,
+        duration: 0.5,
+        stagger: 0.5,
+        delay: 0.75
+      })
 
-    gsap.from(pokeName, {
-      opacity: 0,
-      y: 50,
-      duration: 0.75,
-      stagger: 0.5,
-      delay: 1
-    })
+      gsap.from(pokeName, {
+        opacity: 0,
+        y: 50,
+        duration: 0.75,
+        stagger: 0.5,
+        delay: 1
+      })
 
-    gsap.from(pokeImg, {
-      opacity: 0,
-      y: 50,
-      duration: 0.95,
-      stagger: 0.5,
-      delay: 1
-    })
-  }, [])
+      gsap.from(pokeImg, {
+        opacity: 0,
+        y: 50,
+        duration: 0.95,
+        stagger: 0.5,
+        delay: 1
+      })
+    }
+  }, [isLoading])
 
   return (
     <div className="container text-center">

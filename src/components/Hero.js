@@ -1,6 +1,7 @@
 import './Hero.css' // Importa el archivo de estilos CSS para el componente
 import React from 'react'
 import ContainerCards from './ContainerCards'
+import Loading from './Loading'
 //hooks
 import { useState, useEffect } from 'react';
 //Api
@@ -11,6 +12,7 @@ const Hero = () => {
   const [pokemones, setPokemones] = useState([]);
   const [types, setTypes] = useState([]);
   const [filteredPokemon, setFilteredPokemon] = useState(pokemones)
+  const [isLoading, setIsLoading] = useState(false)
 
   const filtrar = (tipo) => {
     if (tipo === "borrar") {
@@ -23,6 +25,7 @@ const Hero = () => {
     }
   }
   useEffect(() => {
+    setIsLoading(true)
     let pokeInfo = []
     //solicitando la informacion de los pokemon
     API.getAllPokemon().then((results) => {
@@ -40,6 +43,7 @@ const Hero = () => {
           infoP.push(d)
         })
         setPokemones(infoP)
+        setIsLoading(false)
       })
     })
   }, []);
@@ -85,7 +89,8 @@ const Hero = () => {
         </div>
       </div>
       <hr />
-      <ContainerCards pokemones={filteredPokemon.length === 0 ? pokemones : filteredPokemon} />
+      {isLoading && <Loading />}
+      {pokemones && <ContainerCards pokemones={filteredPokemon.length === 0 ? pokemones : filteredPokemon} isLoading={isLoading} />}
     </div>
   )
 }
