@@ -5,25 +5,20 @@ import { gsap } from 'gsap'
 const ContainerCards = ({ pokemones, isLoading }) => {
   console.log(isLoading)
   useEffect(() => {
-    const timeline = gsap.timeline();
+    //const timeline = gsap.timeline();
     const pokeBox = document.querySelectorAll('.poke-box')
     const pokeId = document.querySelectorAll('.poke-id')
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
 
     if (isLoading === false) {
+      
       gsap.from(pokeBox, {
         opacity: 0,
         x: 50,
-        y: 25,
         duration: 0.5,
-        stagger: 0.5
-      })
-
-      gsap.to(pokeBox, {
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.5
+        stagger: 0.5,
+        delay:1
       })
 
       gsap.from(pokeId, {
@@ -31,6 +26,7 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         y: 50,
         duration: 0.5,
         stagger: 0.5,
+        delay:1
       })
 
       gsap.from(pokeName, {
