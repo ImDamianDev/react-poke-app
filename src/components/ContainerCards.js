@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import './ContainerCards.css'
 import { gsap } from 'gsap'
 
-const ContainerCards = ({ pokemones, isLoading }) => {
-  console.log(isLoading)
+const ContainerCards = ({ pokemones }) => {
   useEffect(() => {
     //const timeline = gsap.timeline();
     const pokeBox = document.querySelectorAll('.poke-box')
@@ -44,12 +43,13 @@ const ContainerCards = ({ pokemones, isLoading }) => {
       gsap.from(pokeImg, {
         opacity: 0,
         y: 50,
-        duration: 0.95,
+        duration: 2,
         stagger: 0.2,
         delay: 1,
+        scale: 0.5,
         ease: "elastic.out",
       })
-  }, [isLoading])
+  }, [pokemones])
 
   return (
     <div className="container text-center">

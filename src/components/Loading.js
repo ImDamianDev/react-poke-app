@@ -2,7 +2,7 @@
 const Hero = () => {
 
   return (
-    <div className='Loading'> {/* Contenedor principal */}
+    <div className='Loading text-center'> {/* Contenedor principal */}
      Cargando ...
     </div>
   )
