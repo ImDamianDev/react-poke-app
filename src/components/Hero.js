@@ -79,7 +79,7 @@ const Hero = () => {
         ease: "power4.out",
         stagger: 0.2,
       })
-  }, [pokemones])
+  }, [types])
 
   return (
     <div className='hero'> {/* Contenedor principal */}

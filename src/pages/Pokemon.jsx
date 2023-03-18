@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 //import styles
 import './Pokemon.css';
+import pokeball from '../pokeball.svg';
 //Api
 import * as API from "../services/pokemones";
+import gsap from 'gsap';
 
 const Pokemon = () => {
 
@@ -47,6 +49,27 @@ const Pokemon = () => {
         )
     }, [pokeName]);
 
+    useEffect(() => {
+        const tl = gsap.timeline();
+        const cardHeader = document.querySelectorAll('.card-header')
+        const cardBodyBasic = document.querySelectorAll('.card-body-basic')
+        const imgPoke = document.querySelectorAll('.img-poke')
+        const imgPokeball = document.querySelectorAll('.pokeball')
+        const cardAboutPoke = document.querySelectorAll('.about-poke')
+        const cardStatsPoke = document.querySelectorAll('.stats-poke')
+        tl.from([cardHeader, cardBodyBasic, cardAboutPoke, cardStatsPoke], {
+            opacity: 0,
+            scale: 0.5,
+            stagger: 0.5
+        })
+        gsap.from(imgPokeball, {
+            rotate: 360,
+            repeat: -1,
+            duration: 4,
+            ease: "none"
+        })
+    }, [])
+
 
     return (
         <div className='poke-page container'>
@@ -59,8 +82,9 @@ const Pokemon = () => {
                 <div className='card-body'>
 
                     <div className='row'>
-                        <div className='col-12 col-md-6'>
-                            <img src={pokeImg} alt={"PokeImg" + pokeInfo.id} />
+                        <div className='card-body-basic col-12 col-md-6'>
+                            <img className='pokeball' src={pokeball} alt="Pokeball" />
+                            <img className='img-poke' src={pokeImg} alt={"PokeImg" + pokeInfo.id} />
                             <div className="poke-type-container">
                                 <div className={"poke-type " + pokeTypes[0]}>{pokeTypes[0]}
                                 </div>
@@ -126,7 +150,7 @@ const Pokemon = () => {
                                                     </h6>
                                                 </div>
                                                 <div className="col-6 progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                    <div className={"progress-bar " + pokeTypes[0]}  style={{ width: stat.value}}></div>
+                                                    <div className={"progress-bar " + pokeTypes[0]} style={{ width: stat.value }}></div>
                                                 </div>
                                             </div>
                                         </div>

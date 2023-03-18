@@ -2,8 +2,22 @@
     padding-top: 2em;
 }
 
+.card-body-basic{
+    position: relative;
+}
+.pokeball{
+    position: absolute;
+    height: 200px;
+    top:-3em;
+    zoom: 2;
+    left: -3rem;
+    z-index: -1;
+    opacity: 0.1;
+}
+
 .card {
     border: none;
+    background-color: transparent;
 }
 
 .poke-page .card-header{
@@ -14,6 +28,7 @@
     border: none;
     border-radius: 1em;
     color: white;
+    z-index: 1;
 }
 
 .card-header .name{
