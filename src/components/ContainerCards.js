@@ -11,14 +11,11 @@ const ContainerCards = ({ pokemones, isLoading }) => {
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
 
-    if (isLoading === false) {
-      
       gsap.from(pokeBox, {
         opacity: 0,
         x: 50,
         duration: 0.5,
         stagger: 0.5,
-        delay:1
       })
 
       gsap.from(pokeId, {
@@ -26,7 +23,7 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         y: 50,
         duration: 0.5,
         stagger: 0.5,
-        delay:1
+        delay: 0.5
       })
 
       gsap.from(pokeName, {
@@ -34,7 +31,7 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         y: 50,
         duration: 0.75,
         stagger: 0.5,
-        delay: 1
+        delay: 0.5
       })
 
       gsap.from(pokeImg, {
@@ -44,7 +41,6 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         stagger: 0.5,
         delay: 1
       })
-    }
   }, [isLoading])
 
   return (
