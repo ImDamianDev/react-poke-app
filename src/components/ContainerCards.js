@@ -14,29 +14,30 @@ const ContainerCards = ({ pokemones, isLoading }) => {
       gsap.fromTo(pokeBox, {
         opacity: 0,
         x: 50,
-        duration: 0.5,
-        stagger: 0.5,
+        y: 10,
       }, {
         opacity: 1,
         x: 0,
+        y: 0,
         duration: 0.5,
-        stagger: 0.5,
-        
+        stagger: 0.1,
       })
 
       gsap.from(pokeId, {
         opacity: 0,
-        y: 50,
+        x: 25,
+        y: 25,
         duration: 0.5,
-        stagger: 0.5,
+        stagger: 0.1,
         delay: 0.5
       })
 
       gsap.from(pokeName, {
         opacity: 0,
-        y: 50,
+        x: 25,
+        y: 25,
         duration: 0.75,
-        stagger: 0.5,
+        stagger: 0.1,
         delay: 0.5
       })
 
@@ -44,8 +45,9 @@ const ContainerCards = ({ pokemones, isLoading }) => {
         opacity: 0,
         y: 50,
         duration: 0.95,
-        stagger: 0.5,
-        delay: 1
+        stagger: 0.2,
+        delay: 1,
+        ease: "elastic.out",
       })
   }, [isLoading])
 
