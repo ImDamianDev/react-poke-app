@@ -54,10 +54,11 @@ const Pokemon = () => {
         const cardHeader = document.querySelectorAll('.card-header')
         const cardBodyBasic = document.querySelectorAll('.card-body-basic')
         const imgPoke = document.querySelectorAll('.img-poke')
+        const pokeType = document.querySelectorAll('.poke-type-container')
         const imgPokeball = document.querySelectorAll('.pokeball')
         const cardAboutPoke = document.querySelectorAll('.about-poke')
         const cardStatsPoke = document.querySelectorAll('.stats-poke')
-        tl.from([cardHeader, cardBodyBasic, cardAboutPoke, cardStatsPoke], {
+        tl.from([cardHeader, cardBodyBasic, imgPoke, pokeType, cardAboutPoke, cardStatsPoke], {
             opacity: 0,
             scale: 0.5,
             stagger: 0.5
@@ -65,7 +66,7 @@ const Pokemon = () => {
         gsap.from(imgPokeball, {
             rotate: 360,
             repeat: -1,
-            duration: 4,
+            duration: 5,
             ease: "none"
         })
     }, [])

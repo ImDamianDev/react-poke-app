@@ -8,7 +8,7 @@
 .pokeball{
     position: absolute;
     height: 200px;
-    top:-3em;
+    top: -6em;
     zoom: 2;
     left: -3rem;
     z-index: -1;
