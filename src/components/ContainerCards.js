@@ -40,13 +40,18 @@ const ContainerCards = ({ pokemones }) => {
         delay: 0.5
       })
 
-      gsap.from(pokeImg, {
+      gsap.fromTo(pokeImg, {
         opacity: 0,
-        y: 50,
-        duration: 2,
-        stagger: 0.2,
-        delay: 1,
         scale: 0.5,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        scale:1,
+        y: 0,
+        duration: 2,
+        stagger: 0.1,
+        delay: 0.5,
         ease: "elastic.out",
       })
   }, [pokemones])

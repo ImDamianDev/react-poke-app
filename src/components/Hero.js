@@ -6,6 +6,7 @@ import Loading from './Loading'
 import { useState, useEffect } from 'react';
 //Api
 import * as API from "../services/pokemones";
+import {gsap} from 'gsap'
 
 const Hero = () => {
 
@@ -63,6 +64,22 @@ const Hero = () => {
       setTypes(pokeType)
     })
   }, []);
+
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    const buttonType = document.querySelectorAll('.button-type')
+
+      timeline.fromTo(buttonType, {
+        opacity: 0,
+        x: 25,
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.2,
+      })
+  }, [pokemones])
 
   return (
     <div className='hero'> {/* Contenedor principal */}

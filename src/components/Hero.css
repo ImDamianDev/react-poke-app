@@ -21,6 +21,7 @@
 }
 
 .button-type {
+    opacity: 0;
     padding: 0.5em 0.75em;
     margin-right: 0.75em;
     border-radius: 0.5em;
