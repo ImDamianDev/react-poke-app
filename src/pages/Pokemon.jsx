@@ -61,7 +61,7 @@ const Pokemon = () => {
         tl.from([cardHeader, cardBodyBasic, imgPoke, pokeType, cardAboutPoke, cardStatsPoke], {
             opacity: 0,
             scale: 0.5,
-            stagger: 0.5
+            stagger: 0.2
         })
         gsap.from(imgPokeball, {
             rotate: 360,

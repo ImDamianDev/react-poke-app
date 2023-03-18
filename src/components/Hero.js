@@ -70,12 +70,12 @@ const Hero = () => {
     const buttonType = document.querySelectorAll('.button-type')
 
       timeline.fromTo(buttonType, {
-        opacity: 0,
+        opacity: 0.2,
         x: 25,
       }, {
         opacity: 1,
         x: 0,
-        duration: 1,
+        duration: 0.5,
         ease: "power4.out",
         stagger: 0.2,
       })
