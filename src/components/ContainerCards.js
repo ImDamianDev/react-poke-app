@@ -11,11 +11,17 @@ const ContainerCards = ({ pokemones, isLoading }) => {
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
 
-      gsap.from(pokeBox, {
+      gsap.fromTo(pokeBox, {
         opacity: 0,
         x: 50,
         duration: 0.5,
         stagger: 0.5,
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.5,
+        stagger: 0.5,
+        
       })
 
       gsap.from(pokeId, {

@@ -1,5 +1,5 @@
-
 .poke-box {
+    opacity: 0;
     border-radius: 1em;
     display: flex;
     position: relative;
