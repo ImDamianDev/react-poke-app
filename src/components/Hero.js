@@ -32,6 +32,11 @@ const Hero = () => {
     return filtered.slice(currentPage, Number(currentPage) + 10)
   }
 
+  const home = () => {
+    setCurrentPage(0)
+    window.localStorage.setItem("currentPage", 0)
+  }
+
   const nextPage = () => {
     setCurrentPage(Number(currentPage) + 10)
     window.localStorage.setItem("currentPage", Number(currentPage) + 10)
@@ -71,6 +76,12 @@ const Hero = () => {
       >
       </input>
       <hr />
+      <button
+        className='btn btn-secondary ms-3'
+        onClick={home}
+      >
+        inicio
+      </button>
       <button
         className='btn btn-secondary ms-3'
         onClick={prevPage}
