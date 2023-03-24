@@ -6,7 +6,6 @@ import './Pokemon.css';
 import pokeball from '../pokeball.svg';
 //Api
 import * as API from "../services/pokemones";
-import gsap from 'gsap';
 
 const Pokemon = () => {
 
@@ -48,29 +47,6 @@ const Pokemon = () => {
             }
         )
     }, [pokeName]);
-
-    useEffect(() => {
-        const tl = gsap.timeline();
-        const cardHeader = document.querySelectorAll('.card-header')
-        const cardBodyBasic = document.querySelectorAll('.card-body-basic')
-        const imgPoke = document.querySelectorAll('.img-poke')
-        const pokeType = document.querySelectorAll('.poke-type-container')
-        const imgPokeball = document.querySelectorAll('.pokeball')
-        const cardAboutPoke = document.querySelectorAll('.about-poke')
-        const cardStatsPoke = document.querySelectorAll('.stats-poke')
-        tl.from([cardHeader, cardBodyBasic, imgPoke, pokeType, cardAboutPoke, cardStatsPoke], {
-            opacity: 0,
-            scale: 0.5,
-            stagger: 0.2
-        })
-        gsap.from(imgPokeball, {
-            rotate: 360,
-            repeat: -1,
-            duration: 5,
-            ease: "none"
-        })
-    }, [])
-
 
     return (
         <div className='poke-page container'>

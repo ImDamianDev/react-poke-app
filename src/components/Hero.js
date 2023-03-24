@@ -9,24 +9,21 @@ import { DataContext } from '../context/dataContext';
 
 const Hero = () => {
 
-  const {pokemons, isLoading, currentPage, setCurrentPage} = useContext(DataContext)
+  const { pokemons, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
 
   const [search, setSearch] = useState(
     window.localStorage.getItem('search')
   )
 
-  const setSearchLocalStorage = ({target}) =>{
-    try{
-      setCurrentPage(0);
-      setSearch(target.value)
-      window.localStorage.setItem("search", target.value)
-    } catch(error) {
-      console.log(error)
-    }
+  const setSearchLocalStorage = ({ target }) => {
+    setCurrentPage(0);
+    setSearch(target.value)
+    window.localStorage.setItem("search", target.value)
   }
-
+  console.log(search)
+  
   const filteredPokemons = () => {
-
+    
     if (search.length === 0 || null) {
       return pokemons.slice(currentPage, Number(currentPage) + 10)
     }
@@ -37,7 +34,7 @@ const Hero = () => {
 
   const nextPage = () => {
     setCurrentPage(Number(currentPage) + 10)
-      window.localStorage.setItem("currentPage", Number(currentPage) + 10)
+    window.localStorage.setItem("currentPage", Number(currentPage) + 10)
   }
 
   const prevPage = () => {
@@ -46,12 +43,12 @@ const Hero = () => {
       window.localStorage.setItem("currentPage", Number(currentPage) - 10)
     }
   }
-/*
-  const searchPokemon = ({ target }) => {
-    setCurrentPage(0);
-    setSearch(target.value)
-  }
-*/
+  /*
+    const searchPokemon = ({ target }) => {
+      setCurrentPage(0);
+      setSearch(target.value)
+    }
+  */
   return (
     <div className='hero'> {/* Contenedor principal */}
       <h1 className='hero-title'> {/* Título principal */}
