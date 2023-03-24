@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchAllPokemons } from "../helpers/fetchAllPokemons";
 import { fetchPokemonData } from "../helpers/fetchPokemonData";
 
-import { useDispatch } from "react-redux";
-import { addPokemones } from "../redux/pokemonsSlice";
 
 export const usePokemon = () => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [pokemons, setPokemons] = useState([])
     
-    const dispatch = useDispatch();
     
     useEffect(() => {
 
@@ -30,12 +27,11 @@ export const usePokemon = () => {
                         infoP.push(d)
                         //console.log(d)
                     })
-                    //setPokemons(infoP)
-                    dispatch(addPokemones(infoP))
+                    setPokemons(infoP)
                     setIsLoading(false)
                 })
             })
-    }, [dispatch])
+    }, [])
 
     return {pokemons, isLoading}
 }

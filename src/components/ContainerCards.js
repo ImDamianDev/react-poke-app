@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import './ContainerCards.css'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const ContainerCards = ({ pokemons }) => {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     //const timeline = gsap.timeline();
     const cardsContain = document.querySelectorAll('.cards-contain')
     const pokeBox = document.querySelectorAll('.poke-box')
@@ -13,14 +11,6 @@ const ContainerCards = ({ pokemons }) => {
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
 
-    const timeline = gsap.timeline({
-      scrollTrigger:{
-        trigger: cardsContain,
-        markers: true,
-        start: 'top top',
-        end: '+=2000',
-      }
-    });
 
     gsap.fromTo(pokeBox, {
       opacity: 0,
