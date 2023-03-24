@@ -27,7 +27,7 @@ const Hero = () => {
 
   const filteredPokemons = () => {
     if (search === null) {
-      return setSearch(0)
+      return setSearch('')
     }
 
     if (search.length === 0) {
