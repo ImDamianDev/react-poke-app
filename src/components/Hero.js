@@ -11,20 +11,29 @@ const Hero = () => {
 
   const { pokemons, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
 
-  const [search, setSearch] = useState(
-    window.localStorage.getItem('search')
-  )
+  function verificarVariableLocalStorage() {
+    // Verificar si la variable "miVariable" existe en Local Storage
+    if(localStorage.getItem('search')) {
+      // Si la variable existe, retornar su valor
+      return localStorage.getItem('search');
+    } else {
+      // Si la variable no existe, retornar una cadena vacía
+      return '';
+    }
+  }
+
+  const [search, setSearch] = useState(verificarVariableLocalStorage())
 
   const setSearchLocalStorage = ({ target }) => {
     setCurrentPage(0);
-    setSearch(target.value.toLowerCase())
     window.localStorage.setItem("search", target.value.toLowerCase())
+    setSearch(target.value.toLowerCase())
   }
   console.log(search)
   
   const filteredPokemons = () => {
     
-    if (search.length === 0 || null) {
+    if (search.length === 0) {
       return pokemons.slice(currentPage, Number(currentPage) + 10)
     }
 
