@@ -17,8 +17,8 @@ const Hero = () => {
 
   const setSearchLocalStorage = ({ target }) => {
     setCurrentPage(0);
-    setSearch(target.value)
-    //window.localStorage.setItem("search", target.value)
+    setSearch(target.value.toLowerCase())
+    window.localStorage.setItem("search", target.value.toLowerCase())
   }
   console.log(search)
   
