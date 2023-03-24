@@ -3,7 +3,6 @@ import './ContainerCards.css'
 import { gsap } from 'gsap'
 
 const ContainerCards = ({ pokemons }) => {
-  
   useEffect(() => {
     //const timeline = gsap.timeline();
     const cardsContain = document.querySelectorAll('.cards-contain')
@@ -11,7 +10,6 @@ const ContainerCards = ({ pokemons }) => {
     const pokeId = document.querySelectorAll('.poke-id')
     const pokeName = document.querySelectorAll('.poke-name')
     const pokeImg = document.querySelectorAll('.poke-img')
-
 
     gsap.fromTo(pokeBox, {
       opacity: 0,
