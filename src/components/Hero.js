@@ -26,11 +26,8 @@ const Hero = () => {
   }
 
   const filteredPokemons = () => {
-    if (search === null) {
-      return setSearch('')
-    }
 
-    if (search.length === 0) {
+    if (search.length === 0 || null) {
       return pokemons.slice(currentPage, Number(currentPage) + 10)
     }
 
