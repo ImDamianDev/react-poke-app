@@ -10,19 +10,19 @@ import { Outlet } from 'react-router-dom';
 function App() {
 
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Home />}>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Home />}>
 
-        </Route>
+          </Route>
 
-        <Route path="/pokemon/:pokeName" element={<Pokemon/>}>
+          <Route path="/pokemon/:pokeName" element={<Pokemon />}>
 
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
 
-      <Outlet />
-    </div>
+        <Outlet />
+      </div>
   );
 }
 

@@ -1,86 +1,56 @@
 import './Hero.css' // Importa el archivo de estilos CSS para el componente
-import React from 'react'
+import React, { useContext } from 'react'
 import ContainerCards from './ContainerCards'
 import Loading from './Loading'
 //hooks
-import { useState, useEffect } from 'react';
-//Api
-import * as API from "../services/pokemones";
-import {gsap} from 'gsap'
+import { useState } from 'react';
+
+import { DataContext } from '../context/dataContext';
 
 const Hero = () => {
 
-  const [pokemones, setPokemones] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [filteredPokemon, setFilteredPokemon] = useState(pokemones)
-  const [isLoading, setIsLoading] = useState(false)
+  const {pokemons, isLoading, currentPage, setCurrentPage} = useContext(DataContext)
 
-  const filtrar = (tipo) => {
-    if (tipo === "borrar") {
-      setFilteredPokemon(pokemones)
-    } else {
-      let filterPoke = pokemones.filter(poke =>
-        poke.types.some(p => p.type.name === tipo)
-      )
-      setFilteredPokemon(filterPoke)
+  const [search, setSearch] = useState(
+    window.localStorage.getItem('search')
+  )
+
+  const setSearchLocalStorage = ({target}) =>{
+    try{
+      setCurrentPage(0);
+      setSearch(target.value)
+      window.localStorage.setItem("search", target.value)
+    } catch(error) {
+      console.log(error)
     }
   }
-  useEffect(() => {
-    setIsLoading(true)
-    let pokeInfo = []
-    //solicitando la informacion de los pokemon
-    API.getAllPokemon().then((results) => {
-      //recorriendo los resultados
-      results.forEach((p) => {
-        //almacenando el una variable el nombre de cada poquemon encontrado
-        let pokemonName = p.name
-        //
-        pokeInfo.push(API.getPokemonByName(pokemonName))
-      })
 
-      Promise.all(pokeInfo).then((data) => {
-        let infoP = []
-        data.forEach((d) => {
-          infoP.push(d)
-        })
-        setPokemones(infoP)
-        setIsLoading(false)
-      })
-    })
-  }, []);
+  const filteredPokemons = () => {
+    if (search.length === 0) {
+      return pokemons.slice(currentPage, Number(currentPage) + 10)
+    }
 
+    const filtered = pokemons.filter(poke => poke.name.includes(search));
+    return filtered.slice(currentPage, Number(currentPage) + 10)
+  }
 
-  //console.log(filteredPokemon)
+  const nextPage = () => {
+    setCurrentPage(Number(currentPage) + 10)
+      window.localStorage.setItem("currentPage", Number(currentPage) + 10)
+  }
 
-  useEffect(() => {
-    let pokeType = []
-    API.getType().then((results) => {
-      //recorriendo los resultados
-      results.forEach((type) => {
-        //almacenando el una variable el nombre de cada poquemon encontrado
-        let typeName = type.name
-        pokeType.push(typeName)
-      })
-      setTypes(pokeType)
-    })
-  }, []);
-
-  useEffect(() => {
-    const timeline = gsap.timeline();
-    const buttonType = document.querySelectorAll('.button-type')
-
-      timeline.fromTo(buttonType, {
-        opacity: 0.2,
-        x: 25,
-      }, {
-        opacity: 1,
-        x: 0,
-        duration: 0.5,
-        ease: "power4.out",
-        stagger: 0.2,
-      })
-  }, [types])
-
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(Number(currentPage) - 10)
+      window.localStorage.setItem("currentPage", Number(currentPage) - 10)
+    }
+  }
+/*
+  const searchPokemon = ({ target }) => {
+    setCurrentPage(0);
+    setSearch(target.value)
+  }
+*/
   return (
     <div className='hero'> {/* Contenedor principal */}
       <h1 className='hero-title'> {/* Título principal */}
@@ -90,24 +60,34 @@ const Hero = () => {
       <h3 className='filter-title'>
         Tipo
       </h3>
-      <div className='buttons-type'>
-        <button onClick={() => filtrar("borrar")} className='button-type'>
-          Todos
-        </button>
-        <div className='buttons-type-list'>
-          {types.map((type) => {
-            return (
-              <button key={type} onClick={() => filtrar(type)} className={'button-type ' + type}>
-                {type}
-              </button>
-            )
-          }
-          )}
-        </div>
-      </div>
+      <hr />
+      <h3 className='filter-title'>
+        Busca tu pokemon
+      </h3>
+      <input
+        type="text"
+        className='mb-3 form-control'
+        placeholder=''
+        value={search}
+        onChange={setSearchLocalStorage}
+      >
+      </input>
+      <hr />
+      <button
+        className='btn btn-secondary ms-3'
+        onClick={prevPage}
+      >
+        anterior
+      </button>
+      <button
+        className='btn btn-secondary ms-3'
+        onClick={nextPage}
+      >
+        siguiente
+      </button>
       <hr />
       {isLoading && <Loading />}
-      {pokemones && <ContainerCards pokemones={filteredPokemon.length === 0 ? pokemones : filteredPokemon} isLoading={isLoading} />}
+      {pokemons && <ContainerCards pokemons={filteredPokemons()} isLoading={false} />}
     </div>
   )
 }

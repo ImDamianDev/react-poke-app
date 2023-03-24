@@ -2,10 +2,10 @@ const API_URL = "https://pokeapi.co/api/v2";
 
 export const getAllPokemon = async () => {
     try {
-        const response = await fetch(`${API_URL}/pokemon?limit=151&offset=0`);
+        const response = await fetch(`${API_URL}/pokemon?limit=20&offset=0`);
         const data = await response.json();
-        //console.log(data.results)
-        return data.results;
+        console.log(data)
+        return data;
     } catch (error) {
         console.error(error);
     }
