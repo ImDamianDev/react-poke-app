@@ -3,6 +3,7 @@ import './ContainerCards.css'
 import { gsap } from 'gsap'
 
 const ContainerCards = ({ pokemons }) => {
+  
   useEffect(() => {
     //const timeline = gsap.timeline();
     const cardsContain = document.querySelectorAll('.cards-contain')
