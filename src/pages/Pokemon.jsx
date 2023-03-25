@@ -70,7 +70,7 @@ const Pokemon = () => {
                         </div>
                         <div className='card-body-info col-12 col-md-6'>
                             <div className={'about-poke ' + pokeTypes[0]}>
-                                <h5 class="card-title">
+                                <h5 className="card-title">
                                     About
                                 </h5>
                                 <hr />
@@ -78,26 +78,26 @@ const Pokemon = () => {
                                     (
                                         <div className='about-stats'>
                                             <div>
-                                                <h6 class="card-subtitle mb-2 text-muted">
+                                                <h6 className="card-subtitle mb-2 text-muted">
                                                     Experience
                                                 </h6>
-                                                <p class="card-text">
+                                                <p className="card-text">
                                                     {pokeInfo.base_experience}
                                                 </p>
                                             </div>
                                             <div>
-                                                <h6 class="card-subtitle mb-2 text-muted">
+                                                <h6 className="card-subtitle mb-2 text-muted">
                                                     Height
                                                 </h6>
-                                                <p class="card-text">
+                                                <p className="card-text">
                                                     {pokeInfo.height} ft
                                                 </p>
                                             </div>
                                             <div>
-                                                <h6 class="card-subtitle mb-2 text-muted">
+                                                <h6 className="card-subtitle mb-2 text-muted">
                                                     Weight
                                                 </h6>
-                                                <p class="card-text">
+                                                <p className="card-text">
                                                     {pokeInfo.weight} lbs
                                                 </p>
                                             </div>
@@ -108,7 +108,7 @@ const Pokemon = () => {
                                 }
                             </div>
                             <div className='stats-poke'>
-                                <h5 class="card-title">
+                                <h5 className="card-title">
                                     Base Stats
                                 </h5>
                                 <hr />

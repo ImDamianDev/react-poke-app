@@ -9,7 +9,7 @@ import { DataContext } from '../context/dataContext';
 
 const Hero = () => {
 
-  const { pokemons, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
+  const { pokemonList, pokemons, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
 
   function verificarVariableLocalStorage() {
     // Verificar si la variable "miVariable" existe en Local Storage
@@ -32,12 +32,11 @@ const Hero = () => {
   console.log(search)
   
   const filteredPokemons = () => {
-    
     if (search.length === 0) {
-      return pokemons.slice(currentPage, Number(currentPage) + 10)
+      return pokemonList.slice(currentPage, Number(currentPage) + 10)
     }
 
-    const filtered = pokemons.filter(poke => poke.name.includes(search));
+    const filtered = pokemonList.filter(poke => poke.name.includes(search));
     return filtered.slice(currentPage, Number(currentPage) + 10)
   }
 
@@ -105,7 +104,7 @@ const Hero = () => {
       </button>
       <hr />
       {isLoading && <Loading />}
-      {pokemons && <ContainerCards pokemons={filteredPokemons()} isLoading={false} />}
+      {pokemonList && <ContainerCards pokemons={filteredPokemons()} isLoading={false} />}
     </div>
   )
 }

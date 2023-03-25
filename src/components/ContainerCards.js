@@ -12,7 +12,7 @@ const ContainerCards = ({ pokemons }) => {
                 <h5 className="poke-name">{poke.name}</h5>
                 <h4 className='poke-id'># {poke.id}</h4>
               </div>
-              <img src={poke.img} alt="Logo" className="poke-img" />
+              <img src={poke.sprite} alt={poke.name} className="poke-img" />
             </div>
           </div>
         ))}
