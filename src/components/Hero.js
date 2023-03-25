@@ -13,7 +13,7 @@ const Hero = () => {
 
   function verificarVariableLocalStorage() {
     // Verificar si la variable "miVariable" existe en Local Storage
-    if(localStorage.getItem('search')) {
+    if (localStorage.getItem('search')) {
       // Si la variable existe, retornar su valor
       return localStorage.getItem('search');
     } else {
@@ -30,7 +30,7 @@ const Hero = () => {
     setSearch(target.value.toLowerCase())
   }
   console.log(search)
-  
+
   const filteredPokemons = () => {
     if (search.length === 0) {
       return pokemonList.slice(currentPage, Number(currentPage) + 10)
@@ -38,23 +38,6 @@ const Hero = () => {
 
     const filtered = pokemonList.filter(poke => poke.name.includes(search));
     return filtered.slice(currentPage, Number(currentPage) + 10)
-  }
-
-  const home = () => {
-    setCurrentPage(0)
-    window.localStorage.setItem("currentPage", 0)
-  }
-
-  const nextPage = () => {
-    setCurrentPage(Number(currentPage) + 10)
-    window.localStorage.setItem("currentPage", Number(currentPage) + 10)
-  }
-
-  const prevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(Number(currentPage) - 10)
-      window.localStorage.setItem("currentPage", Number(currentPage) - 10)
-    }
   }
   /*
     const searchPokemon = ({ target }) => {
@@ -68,43 +51,26 @@ const Hero = () => {
         Pokedex
       </h1>
       <hr />
+      <div className='d-flex'>
+        <input
+          type="text"
+          className='form-control'
+          placeholder=''
+          value={search}
+          onChange={setSearchLocalStorage}
+        >
+        </input>
+        <h3 className='filter-titl ms-3'>
+          <i class="bi-search"></i>
+        </h3>
+      </div>
+      <hr />
       <h3 className='filter-title'>
         Tipo
       </h3>
       <hr />
-      <h3 className='filter-title'>
-        Busca tu pokemon
-      </h3>
-      <input
-        type="text"
-        className='mb-3 form-control'
-        placeholder=''
-        value={search}
-        onChange={setSearchLocalStorage}
-      >
-      </input>
-      <hr />
-      <button
-        className='btn btn-secondary ms-3'
-        onClick={home}
-      >
-        inicio
-      </button>
-      <button
-        className='btn btn-secondary ms-3'
-        onClick={prevPage}
-      >
-        anterior
-      </button>
-      <button
-        className='btn btn-secondary ms-3'
-        onClick={nextPage}
-      >
-        siguiente
-      </button>
-      <hr />
       {isLoading && <Loading />}
-      {pokemonList && <ContainerCards pokemons={filteredPokemons()} isLoading={false} />}
+      {pokemonList && <ContainerCards pokemons={filteredPokemons()} />}
     </div>
   )
 }

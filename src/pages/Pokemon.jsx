@@ -1,4 +1,6 @@
 import React from 'react'
+
+import useFetchPokemon from "../hooks/useFetchPokemon";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 //import styles
@@ -10,71 +12,49 @@ import * as API from "../services/pokemones";
 const Pokemon = () => {
 
     const { pokeName } = useParams();
-    const [pokeInfo, setPokeInfo] = useState({});
-    const [pokeImg, setPokeImg] = useState({})
-    const [pokeTypes, setPokeTypes] = useState({});
-    const [pokeStats, setPokeStats] = useState([]);
+    //console.log(pokeName)
+    const { pokemon, isLoading, error } = useFetchPokemon(pokeName);
 
-    console.log(pokeInfo)
-    console.log(pokeStats)
+    const getFirstType = () => {
+        if (!pokemon.types || pokemon.types.length === 0) {
+            return null;
+        }
 
-    useEffect(() => {
-        let pokeTypes = []
-        let pokeStats = []
+        return pokemon.types[0];
+    };
 
-        //solicitando la informacion de los pokemon
-        API.getPokemonByName(pokeName).then(
-            data => {
-                setPokeInfo(data)
-                setPokeImg(data.sprites.other.dream_world.front_default)
-                data.types.map(
-                    t => (
-                        pokeTypes.push(t.type.name)
-                    )
-                )
-                setPokeTypes(pokeTypes)
-                data.stats.map(
-                    stat => (
-                        pokeStats.push(
-                            {
-                                stat: stat.stat.name,
-                                value: stat.base_stat
-                            }
-                        )
-                    )
-                )
-                setPokeStats(pokeStats)
-            }
-        )
-    }, [pokeName]);
+    if (isLoading) {
+        return <div>Cargando...</div>;
+    }
+
 
     return (
         <div className='poke-page container'>
             <div className='card'>
-                <div className={'card-header ' + pokeTypes[0]}>
+                <div className={'card-header ' + getFirstType()}>
                     <a href="/"><i className="bi bi-arrow-left"></i></a>
                     <h1 className='name'>{pokeName}</h1>
-                    <h1 className='id'># {pokeInfo.id}</h1>
+                    <h1 className='id'># {pokemon.id}</h1>
                 </div>
                 <div className='card-body'>
 
                     <div className='row'>
                         <div className='card-body-basic col-12 col-md-6'>
                             <img className='pokeball' src={pokeball} alt="Pokeball" />
-                            <img className='img-poke' src={pokeImg} alt={"PokeImg" + pokeInfo.id} />
+                            <img className='img-poke' src={pokemon.sprite} alt={pokeName} />
                             <div className="poke-type-container">
-                                <div className={"poke-type " + pokeTypes[0]}>{pokeTypes[0]}
+                                <div className={"poke-type " + getFirstType()}>{getFirstType()}
                                 </div>
-                                {!pokeTypes[1] ? "" : (<div className={"poke-type " + pokeTypes[1]}>{pokeTypes[1]}</div>)}
+                                {!pokemon.types[1] ? "" : (<div className={"poke-type " + pokemon.types[1]}>{pokemon.types[1]}</div>)}
                             </div>
                         </div>
                         <div className='card-body-info col-12 col-md-6'>
-                            <div className={'about-poke ' + pokeTypes[0]}>
+                            <div className={'about-poke ' + getFirstType()}>
                                 <h5 className="card-title">
                                     About
                                 </h5>
                                 <hr />
-                                {!pokeInfo === 0 ? (<div>Loading...</div>) :
+                                {!pokemon === 0 ? (<div>Loading...</div>) :
                                     (
                                         <div className='about-stats'>
                                             <div>
@@ -82,7 +62,7 @@ const Pokemon = () => {
                                                     Experience
                                                 </h6>
                                                 <p className="card-text">
-                                                    {pokeInfo.base_experience}
+                                                    {pokemon.base_experience}
                                                 </p>
                                             </div>
                                             <div>
@@ -90,7 +70,7 @@ const Pokemon = () => {
                                                     Height
                                                 </h6>
                                                 <p className="card-text">
-                                                    {pokeInfo.height} ft
+                                                    {pokemon.height} ft
                                                 </p>
                                             </div>
                                             <div>
@@ -98,7 +78,7 @@ const Pokemon = () => {
                                                     Weight
                                                 </h6>
                                                 <p className="card-text">
-                                                    {pokeInfo.weight} lbs
+                                                    {pokemon.weight} lbs
                                                 </p>
                                             </div>
 
@@ -112,13 +92,13 @@ const Pokemon = () => {
                                     Base Stats
                                 </h5>
                                 <hr />
-                                {pokeStats.map((stat) => {
+                                {pokemon.stats.map((stat) => {
                                     return (
                                         <div className='stat-item'>
                                             <div className='row'>
                                                 <div className='col-4'>
                                                     <h6 className="card-subtitle">
-                                                        {stat.stat}
+                                                        {stat.name}
                                                     </h6>
                                                 </div>
                                                 <div className='col-2'>
@@ -127,7 +107,7 @@ const Pokemon = () => {
                                                     </h6>
                                                 </div>
                                                 <div className="col-6 progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                    <div className={"progress-bar " + pokeTypes[0]} style={{ width: stat.value }}></div>
+                                                    <div className={"progress-bar " + getFirstType()} style={{ width: stat.value }}></div>
                                                 </div>
                                             </div>
                                         </div>
