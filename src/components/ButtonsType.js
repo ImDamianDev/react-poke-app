@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 //Api
 import * as API from "../services/pokemones";
 import './ButtonsType.css'
+import useFetchPokemonTypes from "../hooks/useFetchPokemonTypes";
 
 const ButtonsType = ({ pokemones }) => {
 
-  const [types, setTypes] = useState([]);
+  const { types, setTypes } = useFetchPokemonTypes();
+  //const [types, setTypes] = useState([]);
   const [filteredPokemon, setFilteredPokemon] = useState(pokemones)
 
   const filtrar = (tipo) => {
@@ -26,6 +28,7 @@ const ButtonsType = ({ pokemones }) => {
 
   console.log(filteredPokemon)
 
+  /*
   useEffect(() => {
     let pokeType = []
     API.getType().then((results) => {
@@ -38,7 +41,7 @@ const ButtonsType = ({ pokemones }) => {
       setTypes(pokeType)
     })
   }, []);
-
+*/
 
   return (
     <div className='buttons-type'>
@@ -46,14 +49,17 @@ const ButtonsType = ({ pokemones }) => {
         Todos
       </button>
       <div className='buttons-type-list'>
-        {types.map((type) => {
-          return (
-            <button key={type} onClick={() => filtrar(type)} className={'button-type ' + type}>
-              {type}
-            </button>
+        {types && types.length > 0 && (
+          types.map((type) => {
+            return (
+              <button key={type}  className={'button-type ' + type}>
+                {type}
+              </button>
+            )
+          }
           )
-        }
         )}
+        
       </div>
     </div>
   )

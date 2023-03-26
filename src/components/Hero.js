@@ -1,6 +1,7 @@
 import './Hero.css' // Importa el archivo de estilos CSS para el componente
 import React, { useContext } from 'react'
 import ContainerCards from './ContainerCards'
+import ButtonsType from './ButtonsType'
 import Loading from './Loading'
 //hooks
 import { useState } from 'react';
@@ -64,10 +65,6 @@ const Hero = () => {
           <i class="bi-search"></i>
         </h3>
       </div>
-      <hr />
-      <h3 className='filter-title'>
-        Tipo
-      </h3>
       <hr />
       {isLoading && <Loading />}
       {pokemonList && <ContainerCards pokemons={filteredPokemons()} />}

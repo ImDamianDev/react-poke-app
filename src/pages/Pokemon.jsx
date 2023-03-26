@@ -8,6 +8,7 @@ import './Pokemon.css';
 import pokeball from '../pokeball.svg';
 //Api
 import * as API from "../services/pokemones";
+import Loading from "../components/Loading"
 
 const Pokemon = () => {
 
@@ -24,7 +25,7 @@ const Pokemon = () => {
     };
 
     if (isLoading) {
-        return <div>Cargando...</div>;
+        return <Loading />;
     }
 
 
@@ -54,7 +55,7 @@ const Pokemon = () => {
                                     About
                                 </h5>
                                 <hr />
-                                {!pokemon === 0 ? (<div>Loading...</div>) :
+                                {!pokemon === 0 ? (<Loading />) :
                                     (
                                         <div className='about-stats'>
                                             <div>

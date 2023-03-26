@@ -23,23 +23,25 @@ const Paginacion = () => {
   }
 
   return (
-    <div className='d-flex justify-content-between'>
+    <div className='d-flex justify-content-center'>
       <button
-        className='btn btn-secondary'
+        className='btn btn-danger'
         onClick={prevPage}
       >
         <i class="bi-caret-left"></i>
+        Prev
       </button>
       <button
-        className='btn btn-secondary ms-3'
+        className='btn btn-danger ms-2'
         onClick={home}
       >
         <i class="bi-house"></i>
       </button>
       <button
-        className='btn btn-secondary ms-3'
+        className='btn btn-danger ms-2'
         onClick={nextPage}
       >
+        Next
         <i class="bi-caret-right"></i>
       </button>
     </div>
