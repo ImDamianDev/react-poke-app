@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import getValidSprite from "../helpers/getValidSprite";
 
 const useFetchPokemonList = (limit) => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -7,25 +8,6 @@ const useFetchPokemonList = (limit) => {
 
   const API_URL = "https://pokeapi.co/api/v2/pokemon";
   const LOCAL_STORAGE_KEY = "pokemonList";
-
-  const getValidSprite = (sprites) => {
-    // Verifica si la sprite "front_default" existe
-    if (sprites.other.dream_world.front_default) {
-      return sprites.other.dream_world.front_default;
-    }
-    // Si no existe, verifica si alguna de las otras sprites existe
-    const spriteKeys = Object.keys(sprites).filter(
-      (key) =>
-        key !== "back_default" &&
-        key !== "back_shiny" &&
-        sprites[key] !== null
-    );
-    if (spriteKeys.length > 0) {
-      return sprites[spriteKeys[0]];
-    }
-    // Si no existe ninguna sprite válida, retorna null
-    return null;
-  };
 
   const getPokemonData = async (pokemon) => {
     const result = await axios.get(pokemon.url);

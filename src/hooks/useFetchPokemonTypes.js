@@ -35,7 +35,7 @@ const useFetchPokemonTypes = () => {
         fetchTypes();
     }, []);
 
-    return { types, setTypes };
+    return { types, setTypes, isLoading };
 };
 
 export default useFetchPokemonTypes;

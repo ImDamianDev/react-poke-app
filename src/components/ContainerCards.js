@@ -5,7 +5,6 @@ const ContainerCards = ({ pokemons }) => {
 
   return (
     <div className="container text-center">
-      <Pagination />
       <div className="row cards-contain mb-4">
         {pokemons.map(poke => (
           <div className="col-12 col-md-6 col-lg-4 g-4" key={poke.id} onClick={event => window.location.href = '/pokemon/' + poke.name}>
@@ -19,6 +18,7 @@ const ContainerCards = ({ pokemons }) => {
           </div>
         ))}
       </div>
+      <hr />
       <Pagination />
     </div>
   )

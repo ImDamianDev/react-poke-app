@@ -1,16 +1,13 @@
-import './Hero.css' // Importa el archivo de estilos CSS para el componente
-import React, { useContext } from 'react'
-import ContainerCards from './ContainerCards'
-import ButtonsType from './ButtonsType'
-import Loading from './Loading'
-//hooks
-import { useState } from 'react';
-
+import React, { useState, useContext } from 'react'
 import { DataContext } from '../context/dataContext';
+import './Hero.css'
+import ContainerCards from './ContainerCards'
+import Loading from './Loading'
 
 const Hero = () => {
 
-  const { pokemonList, pokemons, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
+  const { pokemonList, isLoading, currentPage, setCurrentPage } = useContext(DataContext)
+  const [search, setSearch] = useState(verificarVariableLocalStorage())
 
   function verificarVariableLocalStorage() {
     // Verificar si la variable "miVariable" existe en Local Storage
@@ -23,14 +20,23 @@ const Hero = () => {
     }
   }
 
-  const [search, setSearch] = useState(verificarVariableLocalStorage())
+  /**
+ * Actualiza la búsqueda en el local storage y establece el valor de búsqueda actual.
+ * @param {Event} event - El evento que se disparó al cambiar el valor de búsqueda.
+ */
+  const setSearchLocalStorage = ({ target: { value } }) => {
+    // Se convierte el valor de búsqueda a minúsculas.
+    const targetValue = value.toLowerCase();
 
-  const setSearchLocalStorage = ({ target }) => {
+    // Se establece la página actual a 0 para mostrar los primeros resultados.
     setCurrentPage(0);
-    window.localStorage.setItem("search", target.value.toLowerCase())
-    setSearch(target.value.toLowerCase())
+
+    // Se establece el valor de búsqueda actual.
+    setSearch(targetValue);
+
+    // Se actualiza el valor de búsqueda en el local storage.
+    window.localStorage.setItem("search", targetValue);
   }
-  console.log(search)
 
   const filteredPokemons = () => {
     if (search.length === 0) {
@@ -40,33 +46,35 @@ const Hero = () => {
     const filtered = pokemonList.filter(poke => poke.name.includes(search));
     return filtered.slice(currentPage, Number(currentPage) + 10)
   }
-  /*
-    const searchPokemon = ({ target }) => {
-      setCurrentPage(0);
-      setSearch(target.value)
-    }
-  */
+  
   return (
     <div className='hero'> {/* Contenedor principal */}
-      <h1 className='hero-title'> {/* Título principal */}
+
+      <h1 className='hero-title text-danger'> {/* Título principal */}
         Pokedex
       </h1>
+
       <hr />
-      <div className='d-flex'>
+
+      <div className='d-flex align-items-center'>
+
         <input
           type="text"
           className='form-control'
-          placeholder=''
+          placeholder='Busca tu pokemon'
           value={search}
           onChange={setSearchLocalStorage}
         >
         </input>
-        <h3 className='filter-titl ms-3'>
-          <i class="bi-search"></i>
-        </h3>
+
+        <i className="bi-search ms-3"></i>
+
       </div>
+
       <hr />
+
       {isLoading && <Loading />}
+
       {pokemonList && <ContainerCards pokemons={filteredPokemons()} />}
     </div>
   )

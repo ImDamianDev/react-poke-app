@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import getValidSprite from "../helpers/getValidSprite";
 
 const useFetchPokemon = (pokemonId) => {
   console.log(pokemonId)
@@ -19,10 +20,13 @@ const useFetchPokemon = (pokemonId) => {
       value: stat.base_stat
     }));
 
+    // Obtener imagen valida
+    const sprite = getValidSprite(data.sprites);
+
     return {
       id: data.id,
       name: data.name,
-      sprite: data.sprites.other.dream_world.front_default,
+      sprite: sprite,
       base_experience: data.base_experience,
       height: data.height,
       weight: data.weight,
